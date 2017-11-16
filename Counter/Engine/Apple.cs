@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    class Apple : ICountable
+   public class Apple : ICountable
     {
         public int Count()
         {

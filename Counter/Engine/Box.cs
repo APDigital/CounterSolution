@@ -8,14 +8,14 @@ namespace Engine
 {
     public class Box<T> : ICountable
     {
-        List<T> boxes;
+        int count;
         public Box(IEnumerable<T> Item)
         {
-            boxes = new List<T>(Item);
+           count = Item.Count();
+
         }
         public int Count()
         {
-            int count = boxes.Count;
             return count;
         }
     }

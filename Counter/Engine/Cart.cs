@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Cart<TBox> : ICountable
+    public class Cart<T> : ICountable
     {
-        private List<TBox> boxes;
         private int cartCount;
-        public Cart(IEnumerable<TBox> boxes)
+        public Cart(Box<T> box)
         {
-            boxes = new List<TBox>(boxes);
-            cartCount = boxes.Count();
+            cartCount = box.Count();
         }
 
         public int Count()
