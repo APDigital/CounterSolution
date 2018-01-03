@@ -11,17 +11,31 @@ namespace Counter
     {
         static void Main(string[] args)
         {
-            List<Apple> apples = new List<Apple>();
-            Apple apple = new Apple();
-            apples.Add(apple);
-            Apple apple2 = new Apple();
-            apples.Add(apple2);
+            List<Apple> MyApples = new List<Apple>()
+            {
+                new Apple { colour = "Red" },
+                new Apple { colour = "Red" },
+                new Apple { colour = "Red" },
+                new Apple {colour = "Green" },
+                new Apple {colour = "Yellow" }
+            };
+            Counter<Apple> appleCounter = new Counter<Apple>();
+            appleCounter.Add(MyApples);
 
-            Box<Apple> boxOfApples = new Box<Apple>(apples);
-            Cart<Apple> cart = new Cart<Apple>(boxOfApples);
+            Counter<Apple> redAppleCounter = new Counter<Apple>();
+            Func<IEnumerable<Apple>, int> NumRedApples = i => i.Where(a => a.colour == "Red").Count();
+            redAppleCounter.Add(MyApples, NumRedApples);
+
+            Box<Apple> boxOfApples = new Box<Apple>(MyApples);
+            List<Box<Apple>> listBox = new List<Box<Apple>>();
+            listBox.Add(boxOfApples);
+
+            Cart<Apple> cart = new Cart<Apple>(listBox);
 
             Console.WriteLine("Apple Count :");
-            Console.WriteLine(apple.Count().ToString());
+            Console.WriteLine(appleCounter.count);
+            Console.WriteLine("Red Apple Count :");
+            Console.WriteLine(redAppleCounter.count);
             Console.WriteLine("Number of things in the box :");
             Console.WriteLine(boxOfApples.Count().ToString());
             Console.WriteLine("Sum of items in the cart : ");

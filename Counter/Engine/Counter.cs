@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Counter<T> : ICountable
+    public class Counter<T> where T :ICountable
     {
-        private List<T> MyList;
+        public int count;
         public void Add(T Item)
         {
-            MyList.Add(Item);
+            count = Item.Count();
         }
 
-        public int Count()
+        public void Add(IEnumerable<T> items)
         {
-            int count = MyList.Count;
-            return count;
+            count = items.Count();
+        }
+        public void Add(IEnumerable<T> items, Func<IEnumerable<T>, int> del)
+        {
+            count = del(items);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Engine
 {
    public class Apple : ICountable
     {
+        public string colour { get; set; }
         public int Count()
         {
             return 1;

@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,10 @@ namespace Engine
     public class Cart<T> : ICountable
     {
         private int cartCount;
-        public Cart(Box<T> box)
+       
+        public Cart(IEnumerable<Box<T>> boxes)
         {
-            cartCount = box.Count();
+            cartCount =  boxes.Sum(x => x.Count());
         }
 
         public int Count()
