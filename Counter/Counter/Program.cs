@@ -74,7 +74,7 @@ namespace Counter
             Console.WriteLine("Apple Count : {0}", appleCounter.count);
             Console.WriteLine("Orange Count : {0}", orangeCounter.count);
             Console.WriteLine("Red Apple Count : {0}", redAppleCounter.count);
-            Console.WriteLine("Orange Apple Count : {0}", largeOrangeCounter.count);
+            Console.WriteLine("Large Orange Count : {0}", largeOrangeCounter.count);
             foreach (Box<Apple> box in cart.CartApple)
             {
                 Console.WriteLine("Number of things in the apple box : {0}", box.Count().ToString());
