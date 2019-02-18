@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Engine
 {
@@ -14,11 +12,11 @@ namespace Engine
             count = Item.Count();
         }
 
-        public void Add(IEnumerable<T> items)
+        public void Add(List<T> items)
         {
             count = items.Count();
         }
-        public void Add(IEnumerable<T> items, Func<IEnumerable<T>, int> del)
+        public void Add(List<T> items, Func<List<T>, int> del)
         {
             count = del(items);
         }

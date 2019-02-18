@@ -45,6 +45,7 @@
     <Compile Include="Cart.cs" />
     <Compile Include="Counter.cs" />
     <Compile Include="ICountable.cs" />
+    <Compile Include="Orange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

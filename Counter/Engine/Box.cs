@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Engine
 {
@@ -10,7 +7,7 @@ namespace Engine
     {
         int count;
 
-        public Box(IEnumerable<T> Item)
+        public Box(List<T> Item)
         {
             count = Item.Count();
            
