@@ -5,40 +5,32 @@ using System.Linq;
 
 namespace Engine
 {
-    public class Cart<T> : ICountable/*, IEnumerable*/
+    public class Cart<T> : ICountable
     {
         private int cartCount;
-        private readonly List<Box<Apple>> cartApple = new List<Box<Apple>>();
-        private readonly List<Box<Orange>> cartOrange = new List<Box<Orange>>();
-
-        public IReadOnlyList<Box<Apple>> CartApple { get; private set; }
-        public IReadOnlyList<Box<Orange>> CartOrange { get; private set; }
+        private ArrayList cart = new ArrayList();
+        
+        public ArrayList ItemCart { get; private set; }
 
         public Cart()
         {
-            CartApple = cartApple.AsReadOnly();
-            CartOrange = cartOrange.AsReadOnly();
+            ItemCart = cart;
         }
 
-        public void AddBoxes(List<Box<Apple>> list)
-        {
-            foreach (Box<Apple> item in list)
-            {
-                cartApple.Add(item);
-            }
-        }
-
-        public void AddBoxes(List<Box<Orange>> list)
+        public void AddBoxes(ArrayList list)
         {
             foreach (var item in list)
             {
-                cartOrange.Add(item);
+                cart.Add(item);
             }
         }
 
         public int Count()
         {
-            cartCount = (cartApple.Sum(x => x.Count())) + (cartOrange.Sum(x => x.Count()));
+            foreach (var item in ItemCart)
+            {
+                cartCount = cartCount + 1;
+            }
             return cartCount;
         }
 

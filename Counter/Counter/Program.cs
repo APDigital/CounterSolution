@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,36 +56,44 @@ namespace Counter
             largeOrangeCounter.Add(MyOranges, NumLargeOranges);
             List<Orange> ListOfLargeOranges = MyOranges.Where(o => o.Size == "Large").ToList();
 
-            Box<Apple> boxOfApples = new Box<Apple>(MyApples);
-            List<Box<Apple>> listBoxesOfApples = new List<Box<Apple>>();
-            listBoxesOfApples.Add(boxOfApples);
+            //Array List
+            ArrayList listOfBoxes = new ArrayList();
 
+            //Boxes
+            Box<Apple> boxOfApples = new Box<Apple>(MyApples);
+            listOfBoxes.Add(boxOfApples);
             Box<Apple> anotherBoxOfApples = new Box<Apple>(ListOfRedApples);
-            listBoxesOfApples.Add(anotherBoxOfApples);
+            listOfBoxes.Add(anotherBoxOfApples);
 
             Box<Orange> boxOfOranges = new Box<Orange>(ListOfLargeOranges);
-            List<Box<Orange>> listBoxesOfOranges = new List<Box<Orange>>();
-            listBoxesOfOranges.Add(boxOfOranges);
+            listOfBoxes.Add(boxOfOranges);
+            listOfBoxes.Add(boxOfApples);
 
+            //Cart
             Cart<dynamic> cart = new Cart<dynamic>();
-            cart.AddBoxes(listBoxesOfApples);
-            cart.AddBoxes(listBoxesOfOranges);
-           
+            cart.AddBoxes(listOfBoxes);
 
+            //Output
             Console.WriteLine("Apple Count : {0}", appleCounter.count);
             Console.WriteLine("Orange Count : {0}", orangeCounter.count);
             Console.WriteLine("Red Apple Count : {0}", redAppleCounter.count);
             Console.WriteLine("Large Orange Count : {0}", largeOrangeCounter.count);
-            foreach (Box<Apple> box in cart.CartApple)
+
+            foreach (var box in cart.ItemCart)
             {
-                Console.WriteLine("Number of things in the apple box : {0}", box.Count().ToString());
-            }
-            foreach (Box<Orange> box in cart.CartOrange)
-            {
-                Console.WriteLine("Number of things in the orange box : {0}", box.Count().ToString());
+                if (box is Box<Apple>)
+                {
+                    Box<Apple> newbox = box as Box<Apple>;
+                    Console.WriteLine("Number of Items in Apple Box: {0}", newbox.Count());
+                }
+                else
+                {
+                    Box<Orange> newBox = box as Box<Orange>;
+                    Console.WriteLine("Number of Items in Orange Box: {0}", newBox.Count());
+                }
             }
 
-            Console.WriteLine("Sum of items in the cart : {0}", cart.Count().ToString());
+            Console.WriteLine("Sum of boxes in the cart : {0}", cart.Count().ToString());
 
             Console.ReadLine();
 
